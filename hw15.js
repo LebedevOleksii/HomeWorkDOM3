@@ -24,14 +24,14 @@ class Button {
         this.button.addEventListener('mouseup', (event)=>{
             if( 608 < event.clientX  < 717 && 120 < event.clientY < 139 ) {
                 this.button.style.background = '#6495ED';
-                this.transitionButton('1.5s ease-in-out ');
-                this.transformButton('rotateX(-10deg)');
-                this.transformButton('rotateX(-360deg)');
-                this.button.style.font = '1.3em Ariel';
+                this.transitionButton('1s ease-in-out ');
+                this.transformButton('rotateX(10deg)');
+                this.transformButton('rotateX(360deg)');
+                this.button.style.fontSize = '1.3em';
                 this.button.style.boxShadow = '4px 4px 12px -5px #000000, 4px 4px 14px -3px #ffffff inset';
                 setTimeout(()=>{
                     this.opacityButton(1);
-                    this.button.innerText = 'натиснуто';
+                    this.changeInnerText('натиснуто');
                 }, 500);
             }
         });
@@ -40,8 +40,8 @@ class Button {
     appenToElement(element){
         element.append(this.button);
     }
-    changeInnerHTML(innerHtml){
-        this.button.innerHTML(innerHtml);
+    changeInnerText(innerText){
+        this.button.innerText = innerText;
     }
     transitionButton(transition){
         this.button.style.transition = transition;
