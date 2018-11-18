@@ -60,14 +60,14 @@ class Button {
     }
 }
 
-const message = document.querySelector('#message');
-
 const testButton = new Button ({
     width: 110,
     height: 40,
     innerText: "натиснути",
     parentElement: document.querySelector('.wrapper'),
     onClick: function(event){
-        message.classList.toggle('open');
+        setTimeout(()=>{
+            document.querySelector('#message').classList.toggle('open');
+        },350)
     }
 });
