@@ -26,7 +26,7 @@ class Button {
             this.transformButton('rotateX(10deg)');
             this.transformButton('rotateX(360deg)');
             this.button.style.fontSize = '1.3em';
-            this.button.style.boxShadow = '4px 4px 12px -5px #000000, 4px 4px 14px -3px #ffffff inset';
+            this.button.style.boxShadow = '4px 4px 12px -4px #000000, 4px 4px 14px -3px #ffffff inset';
             setTimeout(()=>{
                 this.opacityButton(1);
                 this.changeInnerText('натиснуто');
@@ -35,7 +35,7 @@ class Button {
                     this.button.style.background = '0';
                     this.transitionButton('.5s ease-in ');
                     this.button.style.fontSize = '1em';
-                    this.button.style.boxShadow = '0';
+                    this.button.style.boxShadow = 'none';
                     this.opacityButton(.3);
                     this.changeInnerText('натиснути');
                 },3000)
@@ -60,12 +60,14 @@ class Button {
     }
 }
 
+const message = document.querySelector('#message');
+
 const testButton = new Button ({
     width: 110,
     height: 40,
     innerText: "натиснути",
     parentElement: document.querySelector('.wrapper'),
     onClick: function(event){
-        console.log('+');
+        message.classList.toggle('open');
     }
 });

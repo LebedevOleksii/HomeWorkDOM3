@@ -1,6 +1,6 @@
 #message {
-    display: none;
+    visibility: hidden;
 }
-.open {
-    display: inline-block;
+.open#message {
+    visibility: visible;
 }
