@@ -1,0 +1,6 @@
+#message {
+    visibility: hidden;
+}
+.open#message {
+    visibility: visible;
+}
