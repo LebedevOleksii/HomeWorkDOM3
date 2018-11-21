@@ -57,7 +57,7 @@ const firstButton = new Button ({
     parentElement: document.querySelector('#wrapper'),
     width: 110,
     height: 40,
-    innerText:'button(X)',
+    innerText:'button(x)',
     activeText: "pressed(X)",
     axis: 'X',
     onClick: function(event){
@@ -69,7 +69,7 @@ const secondButton = new Button({
     parentElement: document.querySelector('#wrapper'),
     width: 110,
     height: 40,
-    innerText:'button(Z)',
+    innerText:'button(z)',
     activeText: "pressed(Z)",
     axis: 'Z',
     onClick: function(event){
@@ -81,7 +81,7 @@ const thirdButton = new Button({
     parentElement: document.querySelector('#wrapper'),
     width: 110,
     height: 40,
-    innerText:'button(Y)',
+    innerText:'button(y)',
     activeText: "pressed(Y)",
     axis: 'Y',
     onClick: function(event){
