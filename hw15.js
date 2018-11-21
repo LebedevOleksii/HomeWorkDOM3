@@ -2,24 +2,26 @@
 class Button {
     constructor(options){
         var {
-            width = 30,
-            height = 50,
+            width = 130,
+            height = 40,
             parentElement = document.body,
             onClick = () => {},
             axis = 'Z',
-            innerText = 'press'
+            innerText = 'press',
+            activeText = 'pressed'
         } = options;
         this.button = document.createElement('button');
         this.button.style.width = `${width}px`;
         this.button.style.height = `${height}px`;
         this.button.innerText = innerText;
-        this.button.style.opacity = '.2';
+        this.button.activeText = activeText;
         this.button.axis = axis;
+        this.button.style.opacity = '.2';
         this.button.style.font = 'inherit';
         this.button.style.backgroundColor = 'transparent';
         this.button.addEventListener('click', (event)=>{
             onClick(event);
-            this.RotateButton(`rotate${axis}(360deg)`, `rotate${axis}(0deg)`)
+            this.RotateButton(`rotate${axis}(360deg)`, `rotate${axis}(0deg)`,innerText,activeText)
         });
         
         this.appenToElement(parentElement);
@@ -30,7 +32,7 @@ class Button {
     transitionButton(transition){
         this.button.style.transition = transition;
     }
-    RotateButton(rotate1, rotate2){
+    RotateButton(rotate1, rotate2, text, activeText){
         this.button.style.background = '#6495ED';
         this.transitionButton('.6s ease-in-out ');
         this.button.style.transform = rotate1;
@@ -38,7 +40,7 @@ class Button {
         this.button.style.boxShadow = '4px 4px 12px -4px #000000, 4px 4px 14px -3px #ffffff inset';
         setTimeout(()=>{
             this.button.style.opacity = '1';
-            this.button.innerText = 'pressed';
+            this.button.innerText = activeText;
         }, 300);
         setTimeout(()=>{
             this.button.style.transform = rotate2;
@@ -47,16 +49,17 @@ class Button {
             this.button.style.fontSize = '1em';
             this.button.style.boxShadow = 'none';
             this.button.style.opacity = '.2';
-            this.button.innerText = 'button';
+            this.button.innerText = text;
         },3000)
     }
 }
 const firstButton = new Button ({
-    innerText:'press',
-    axis: 'X',
+    parentElement: document.querySelector('#wrapper'),
     width: 110,
     height: 40,
-    parentElement: document.querySelector('#wrapper'),
+    innerText:'button(X)',
+    activeText: "pressed(X)",
+    axis: 'X',
     onClick: function(event){
             document.querySelector('#message').classList.toggle('open');
     }
@@ -64,10 +67,11 @@ const firstButton = new Button ({
 
 const secondButton = new Button({
     parentElement: document.querySelector('#wrapper'),
-    axis: 'Z',
-    innerText:'press',
     width: 110,
     height: 40,
+    innerText:'button(Z)',
+    activeText: "pressed(Z)",
+    axis: 'Z',
     onClick: function(event){
         document.querySelector('#message').classList.toggle('open');
     }
@@ -75,10 +79,11 @@ const secondButton = new Button({
 
 const thirdButton = new Button({
     parentElement: document.querySelector('#wrapper'),
-    axis: 'Y',
-    innerText:'press',
     width: 110,
     height: 40,
+    innerText:'button(Y)',
+    activeText: "pressed(Y)",
+    axis: 'Y',
     onClick: function(event){
         document.querySelector('#message').classList.toggle('open');
     }
