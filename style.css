@@ -4,3 +4,8 @@
 .open#message {
     visibility: visible;
 }
+#wrapper {
+    display: flex;
+    justify-content: start;
+}
+
