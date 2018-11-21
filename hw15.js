@@ -5,69 +5,81 @@ class Button {
             width = 30,
             height = 50,
             parentElement = document.body,
-            innerText = 'button',
-            opacity =  .3,
-            onClick = () => {}
+            onClick = () => {},
+            axis = 'Z',
+            innerText = 'press'
         } = options;
         this.button = document.createElement('button');
         this.button.style.width = `${width}px`;
         this.button.style.height = `${height}px`;
         this.button.innerText = innerText;
-        this.button.style.opacity = opacity;
+        this.button.style.opacity = '.2';
+        this.button.axis = axis;
         this.button.style.font = 'inherit';
         this.button.style.backgroundColor = 'transparent';
-        this.button.classList.add('myButton');
-        this.button.onClicl = 
-        
-        this.button.addEventListener('mouseup', (event)=>{
+        this.button.addEventListener('click', (event)=>{
             onClick(event);
-            this.button.style.background = '#6495ED';
-            this.transitionButton('1s ease-in-out ');
-            this.transformButton('rotateX(10deg)');
-            this.transformButton('rotateX(360deg)');
-            this.button.style.fontSize = '1.3em';
-            this.button.style.boxShadow = '4px 4px 12px -4px #000000, 4px 4px 14px -3px #ffffff inset';
-            setTimeout(()=>{
-                this.opacityButton(1);
-                this.changeInnerText('натиснуто');
-                setTimeout(()=>{
-                    this.transformButton('rotateX(0deg)');
-                    this.button.style.background = '0';
-                    this.transitionButton('.5s ease-in ');
-                    this.button.style.fontSize = '1em';
-                    this.button.style.boxShadow = 'none';
-                    this.opacityButton(.3);
-                    this.changeInnerText('натиснути');
-                },3000)
-            }, 500);
+            this.RotateButton(`rotate${axis}(360deg)`, `rotate${axis}(0deg)`)
         });
+        
         this.appenToElement(parentElement);
     }
     appenToElement(element){
         element.append(this.button);
     }
-    changeInnerText(innerText){
-        this.button.innerText = innerText;
-    }
     transitionButton(transition){
         this.button.style.transition = transition;
     }
-    opacityButton(value){
-        this.button.style.opacity = value;
-    }
-    transformButton(value){
-        this.button.style.transform = value;
+    RotateButton(rotate1, rotate2){
+        this.button.style.background = '#6495ED';
+        this.transitionButton('.6s ease-in-out ');
+        this.button.style.transform = rotate1;
+        this.button.style.fontSize = '1.3em';
+        this.button.style.boxShadow = '4px 4px 12px -4px #000000, 4px 4px 14px -3px #ffffff inset';
+        setTimeout(()=>{
+            this.button.style.opacity = '1';
+            this.button.innerText = 'pressed';
+        }, 300);
+        setTimeout(()=>{
+            this.button.style.transform = rotate2;
+            this.button.style.background = 'none';
+            this.transitionButton('.5s ease-in ');
+            this.button.style.fontSize = '1em';
+            this.button.style.boxShadow = 'none';
+            this.button.style.opacity = '.2';
+            this.button.innerText = 'button';
+        },3000)
     }
 }
-
-const testButton = new Button ({
+const firstButton = new Button ({
+    innerText:'press',
+    axis: 'X',
     width: 110,
     height: 40,
-    innerText: "натиснути",
-    parentElement: document.querySelector('.wrapper'),
+    parentElement: document.querySelector('#wrapper'),
     onClick: function(event){
-        setTimeout(()=>{
             document.querySelector('#message').classList.toggle('open');
-        },350)
+    }
+});
+
+const secondButton = new Button({
+    parentElement: document.querySelector('#wrapper'),
+    axis: 'Z',
+    innerText:'press',
+    width: 110,
+    height: 40,
+    onClick: function(event){
+        document.querySelector('#message').classList.toggle('open');
+    }
+});
+
+const thirdButton = new Button({
+    parentElement: document.querySelector('#wrapper'),
+    axis: 'Y',
+    innerText:'press',
+    width: 110,
+    height: 40,
+    onClick: function(event){
+        document.querySelector('#message').classList.toggle('open');
     }
 });
